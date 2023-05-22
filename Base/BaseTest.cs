@@ -35,6 +35,7 @@
             //ChromeDriver driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
             Driver = new ChromeDriver(chromeOptions);
+            Driver.Manage().Window.Maximize();
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(3));
             Builder = new Actions(Driver);
         }

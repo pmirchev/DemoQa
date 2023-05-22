@@ -4,6 +4,7 @@ namespace DemoQa.Tests
     using DemoQa.Pages;
     using DemoQa.Utilities;
     using OpenQA.Selenium;
+    using System.Linq;
 
     [TestFixture]
     public class Navigation : BaseTest
