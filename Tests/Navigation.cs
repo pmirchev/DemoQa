@@ -45,7 +45,7 @@ namespace DemoQa.Tests
         {
             _homePage.NavigateTo();
 
-            Assert.IsTrue(_homePage.BannerOnHomePage.Displayed);
+            Assert.That(_homePage.BannerOnHomePage.Displayed);
             Assert.That(_homePage.Footer.Text, Is.EqualTo(FooterText));
         }
 
@@ -66,10 +66,33 @@ namespace DemoQa.Tests
             Driver.ScrollTo(categoryButton);
             categoryButton.Click();
 
-            var headerText = Driver.FindElement(By.ClassName("main-header")).Text;
-            var expectedHeader = _homePage.GetHeaderName(categoryName);
+            var pageUrl = Driver.Url;
+            var endPoint = "";
+            switch (categoryName)
+            {
+                case "Elements":
+                    endPoint = "elements";
+                    break;
+                case "Forms":
+                    endPoint = "forms";
+                    break;
+                case "Alerts, Frame & Windows":
+                    endPoint = "alertsWindows";
+                    break;
+                case "Widgets":
+                    endPoint = "widgets";
+                    break;
+                case "Interactions":
+                    endPoint = "interaction";
+                    break;
+                case "Book Store Application":
+                    endPoint = "books";
+                    break;
+            }
 
-            Assert.That(expectedHeader, Is.EqualTo(headerText));
+            var expectedUrl = $"https://demoqa.com/{endPoint}";
+
+            Assert.That(expectedUrl, Is.EqualTo(pageUrl));
         }
 
         [Test]
@@ -92,7 +115,7 @@ namespace DemoQa.Tests
             Driver.ScrollTo(elementButton);
             elementButton.Click();
 
-            var headerText = Driver.FindElement(By.ClassName("main-header")).Text;
+            var headerText = Driver.FindElement(By.ClassName("text-center")).Text;
 
             Assert.That(sectionName, Is.EqualTo(headerText));
         }
@@ -105,7 +128,7 @@ namespace DemoQa.Tests
             _formPage.PracticeFormButton.Click();
 
             var expecteHeader = "Practice Form";
-            var actualHeader = Driver.FindElement(By.ClassName("main-header")).Text;
+            var actualHeader = Driver.FindElement(By.ClassName("text-center")).Text;
 
             Assert.That(expecteHeader, Is.EqualTo(actualHeader));
         }
@@ -126,7 +149,7 @@ namespace DemoQa.Tests
             Driver.ScrollTo(sectionButton);
             sectionButton.Click();
 
-            var headerText = Driver.FindElement(By.ClassName("main-header")).Text;
+            var headerText = Driver.FindElement(By.ClassName("text-center")).Text;
 
             Assert.That(sectionName, Is.EqualTo(headerText));
         }
@@ -151,7 +174,7 @@ namespace DemoQa.Tests
             Driver.ScrollTo(sectionButton);
             sectionButton.Click();
 
-            var headerText = Driver.FindElement(By.ClassName("main-header")).Text;
+            var headerText = Driver.FindElement(By.ClassName("text-center")).Text;
 
             Assert.That(sectionName, Is.EqualTo(headerText));
         }
@@ -172,7 +195,7 @@ namespace DemoQa.Tests
             Driver.ScrollTo(sectionButton);
             sectionButton.Click();
 
-            var headerText = Driver.FindElement(By.ClassName("main-header")).Text;
+            var headerText = Driver.FindElement(By.ClassName("text-center")).Text;
 
             Assert.That(sectionName, Is.EqualTo(headerText));
         }
@@ -192,18 +215,27 @@ namespace DemoQa.Tests
             Driver.ScrollTo(sectionButton);
             sectionButton.Click();
 
-            var headerText = string.Empty;
-            if (sectionName == "Book Store API")
+            var pageUrl = Driver.Url;
+            var endPoint = "";
+            switch (sectionName)
             {
-                headerText = Driver.FindElement(By.ClassName("title")).Text;
+                case "Profile":
+                    endPoint = "profile";
+                    break;
+                case "Login":
+                    endPoint = "login";
+                    break;
+                case "Book Store":
+                    endPoint = "books";
+                    break;
+                case "Book Store API":
+                    endPoint = "swagger/";
+                    break;
             }
-            else
-            {
-                headerText = Driver.FindElement(By.ClassName("main-header")).Text;
-            }
-            var expectedHeader = _bookStorePage.GetHeaderName(sectionName);
 
-            Assert.That(expectedHeader, Is.EqualTo(headerText));
+            var expectedUrl = $"https://demoqa.com/{endPoint}";
+
+            Assert.That(expectedUrl, Is.EqualTo(pageUrl));
         }
     }
 }
