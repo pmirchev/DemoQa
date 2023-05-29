@@ -177,5 +177,26 @@
         //Results section
         public ICollection<IWebElement> Results => 
             Driver.FindElements(By.Id("result"));
+
+        public bool AllFoldersExpandedSuccessfully()
+        {
+            return HomeDirectoryExpandedTitle.Displayed &&
+                DesktopDirectoryExpandedTitle.Displayed &&
+                NotesDirectoryTitle.Displayed && 
+                CommandsDirectoryTitle.Displayed &&
+                DocumentsDirectoryExpandedTitle.Displayed &&
+                WorkSpaceDirectoryExpandedTitle.Displayed &&
+                ReactDirectoryTitle.Displayed &&
+                AngularDirectoryTitle.Displayed &&
+                VeuDirectoryTitle.Displayed &&
+                OfficeDirectoryExpandedTitle.Displayed &&
+                PublicDirectoryTitle.Displayed &&
+                PrivateDirectoryTitle.Displayed &&
+                ClassifiedDirectoryTitle.Displayed &&
+                GeneralDirectoryTitle.Displayed &&
+                DownloadsDirectoryExpandedTitle.Displayed &&
+                WordFileDocumentTitle.Displayed &&
+                ExcelFileDocumentTitle.Displayed;
+        }
     }
 }
